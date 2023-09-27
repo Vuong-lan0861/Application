@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bai1</title>
+    <!-- Link icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Link css -->
+    <link rel="stylesheet" href="./css/baitap2.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Feedback Coach</h2>
+        <p>Thầy dạy anh em có hay không</p>
+
+        <ul id=score>
+            <!-- <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li> -->
+        </ul>
+        <div class="content__input">
+            <input type="text" placeholder="Write a review" id="text">
+            <button onclick="save()" id="btn">send</button>
+        </div>
+    </div>
+
+
+    <div class="render">
+
+    </div>
+
+
+    <!-- <div>
+                <i class="fa-solid fa-pen-to-square"></i>
+                <i class="fa-solid fa-xmark"></i>
+            </div> -->
+
+
+
+    <script>
+        let text = "";
+        for (let i = 0; i <= 10; i++) {
+            text += `<li onclick = "choose(${i})">${i}</li>`;
+        }
+        document.getElementById("score").innerHTML = text;
+        let score1;
+        //  hàm dùng để dổi màu
+        function choose(number) {
+            score1 = number;
+            let result = document.getElementsByTagName("li");
+            for (let j = 0; j < result.length; j++) {
+                if (number == j) {
+                    result[j].style.backgroundColor = "pink";
+                } else {
+                    result[j].style.backgroundColor = "white";
+                }
+            }
+        }
+        // Khai báo mản chứa nội dung comment
+        let comments = [];
+
+        // Hàm lấy giá trị ô input của người dùng nhập vào
+        function save() {
+            let text = document.getElementById("text").value;
+            console.log(text);
+            let info = {
+                content: text,
+                score: score1,
+                id: Math.floor(Math.random() * 478927)
+            }
+            comments.push(info);
+
+            renderComment();
+
+        }
+        // Hiển thị nội dung
+
+        function renderComment() {
+            let result = "";
+            // localStorage.getItem();
+            for (let z = 0; z < comments.length; z++) {
+
+                result += `<ul>
+                            <li>${comments[z].score}</li>
+                            <p>${comments[z].content}</p>
+                            <i class="fa-solid fa-pen-to-square" ></i>
+                            <i class="fa-solid fa-xmark" onclick = "deleteItem(${z})"></i>
+                           </ul>`
+            }
+            
+            document.getElementsByClassName("render")[0].innerHTML = result;
+        }
+        // Hàm xoá nội dung
+        function deleteItem(z) {  
+            comments.splice(z,1);
+            renderComment();
+        }
+
+
+
+        
+    </script>
+</body>
+
+</html>
