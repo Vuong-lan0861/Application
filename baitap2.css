@@ -8,6 +8,7 @@
     justify-content: center;
     flex-direction: column;
     text-align: center;
+    align-items: center;
 
 }
 
@@ -21,6 +22,7 @@ ul{
     list-style: none;
     gap: 10px;
     justify-content: center;
+    width: 750px;
 }
 
 ul li{
@@ -32,14 +34,17 @@ ul li{
     text-align: center;
     margin:20px 5px;   
 }
+.content__input{
+    position: relative;
+}
 
 #text{
-    width: 800px;
+    width: 750px;
     height: 40px;
    
 }
 
-#btn{
+#btn,#btn_update{
     width: 60px;
     height: 30px;
     background-color: rgba(9, 125, 9, 0.905);
@@ -47,8 +52,12 @@ ul li{
     border-radius: 7px;
     font-family: 'Times New Roman', Times, serif;
     font-size: medium;
-    position: relative;
-    right: 70px;
+    /* position: absolute;
+    top: 5px;
+    right: 20px; */
+}
+#btn_update{
+    display:none;
 }
 
 .render p,ul{

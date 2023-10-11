@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>course_page</title>
+    <!-- Link bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Link CSS của course-page -->
+    <link rel="stylesheet" href="course_page.css">
+    <!-- Link CSS của icon -->
+    <script src="https://kit.fontawesome.com/50a966401d.js" crossorigin="anonymous"></script>
+    <!-- link icon boxin-icon -->
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
+</head>
+
+<body>
+    <div>
+        <header class="header">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="header__logo">
+                    <img src="./assets/img/logorikkei.png" alt="">
+                    <p class="header__text">Để nông dân biết code</p>
+                </div>
+
+                <h3 class="header__title">HỆ THỐNG QUẢN LÝ SINH VIÊN RIKKEI</h3>
+
+                <div class="header__btn">
+                    <button class="btn btn-danger">Đăng xuất</button>
+                </div>
+
+            </div>
+        </header>
+
+        <main class="main">
+            <div class="container row">
+                <div class="main__left col-md-4">
+                    <table class="table__left">
+                        <tr>
+                            <td>
+                                <i class="fas fa-tachometer-alt"></i>
+                            </td>
+                            <td>Bảng điều khiển</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="fas fa-book"></i>
+                            </td>
+                            <td>Quản lý khóa học</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="fas fa-chalkboard"></i>
+                            </td>
+                            <td>Quản lý lớp học</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="fas fa-users"></i>
+                            </td>
+                            <td>Quản lý sinh viên</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="fas fa-user-cog"></i>
+                            </td>
+                            <td>Quản lý tài khoản</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="main__right col-md-8">
+                    <h5 class="d-flex justify-content-center">QUẢN LÝ KHÓA HỌC</h5>
+
+                    <div class="themMoi">
+                        <div>
+                            <button>Thêm mới</button>
+                        </div>
+                        <div class="search-bar">
+                            <input type="text" placeholder="Nhập từ khóa học tìm kiếm">
+                            <button>Tìm kiếm</button>
+                        </div>
+                        <div>
+                            <select>
+                                <option value="asc">Sắp xếp A-Z</option>
+                                <option value="desc">Sắp xếp Z-A</option>
+                            </select>
+                            <button>Lựa chọn</button>
+                        </div>
+                    </div>
+
+                    <table class="main__table">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã khóa học</th>
+                                <th>Tên khóa học</th>
+                                <th>Thời gian (giờ)</th>
+                                <th>Trạng thái</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>RA01</td>
+                                <td>Khóa học 1</td>
+                                <td>1000</td>
+                                <td>Hoạt động</td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm">Sửa</button>
+                                    <button class="btn btn-secondary btn-sm">Xóa</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>RA02</td>
+                                <td>Khóa học 2</td>
+                                <td>2000</td>
+                                <td>Hoạt động</td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm">Sửa</button>
+                                    <button class="btn btn-secondary btn-sm">Xóa</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>RA03</td>
+                                <td>Khóa học 3</td>
+                                <td>3000</td>
+                                <td>Hoạt động</td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm">Sửa</button>
+                                    <button class="btn btn-secondary btn-sm">Xóa</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>RA04</td>
+                                <td>Khóa học 4</td>
+                                <td>4000</td>
+                                <td>Hoạt động</td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm">Sửa</button>
+                                    <button class="btn btn-secondary btn-sm">Xóa</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>RA05</td>
+                                <td>Khóa học 5</td>
+                                <td>5000</td>
+                                <td>Hoạt động</td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm">Sửa</button>
+                                    <button class="btn btn-secondary btn-sm">Xóa</button>
+                                </td>
+                            </tr><tr>
+                                <td>6</td>
+                                <td>RA06</td>
+                                <td>Khóa học 6</td>
+                                <td>6000</td>
+                                <td>Hoạt động</td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm">Sửa</button>
+                                    <button class="btn btn-secondary btn-sm">Xóa</button>
+                                </td>
+                            </tr>
+
+                           
+                        </tbody>
+                    </table>
+                    <div class="pagination">
+                        <button>Prev</button>
+                        <button>1</button>
+                        <button>2</button>
+                        
+                        <button>Next</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+
+
+        <footer class="footer ">
+            <p>Copyright Rikkei Academy @2023</p>
+        </footer>
+</body>
+
+</html>

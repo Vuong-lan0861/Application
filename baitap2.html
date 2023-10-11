@@ -32,33 +32,28 @@
         <div class="content__input">
             <input type="text" placeholder="Write a review" id="text">
             <button onclick="save()" id="btn">send</button>
+            <button onclick="update()" id="btn_update">Update</button>
         </div>
     </div>
-
 
     <div class="render">
 
     </div>
-
-
     <!-- <div>
                 <i class="fa-solid fa-pen-to-square"></i>
                 <i class="fa-solid fa-xmark"></i>
             </div> -->
-
-
-
     <script>
         let text = "";
         for (let i = 0; i <= 10; i++) {
-            text += `<li onclick = "choose(${i})">${i}</li>`;
+            text += `<li class = "colerScore" onclick = "choose(${i})">${i}</li>`;
         }
         document.getElementById("score").innerHTML = text;
         let score1;
         //  hàm dùng để dổi màu
         function choose(number) {
             score1 = number;
-            let result = document.getElementsByTagName("li");
+            let result = document.getElementsByClassName("colerScore");
             for (let j = 0; j < result.length; j++) {
                 if (number == j) {
                     result[j].style.backgroundColor = "pink";
@@ -68,48 +63,118 @@
             }
         }
         // Khai báo mản chứa nội dung comment
-        let comments = [];
+        let comments = JSON.parse(localStorage.getItem("comments")) || [];
 
         // Hàm lấy giá trị ô input của người dùng nhập vào
         function save() {
             let text = document.getElementById("text").value;
-            console.log(text);
             let info = {
                 content: text,
                 score: score1,
                 id: Math.floor(Math.random() * 478927)
             }
+            let flag = localStorage.getItem("keyId");
+
+            if (flag != null) {
+                for (let a = 0; a < comments.length; a++) {
+                    if (comments[a].id == flag) {
+                        comments.slice(a, 1, { ...info, id: flag });
+                    }
+                    localStorage.setItem("comments", JSON.stringify(comments));
+                    renderComment();
+                    localStorage.removeItem("keyId");
+                    return;
+                }
+            }
             comments.push(info);
-
+            localStorage.setItem("comments", JSON.stringify(comments));
+            // Làm trống ô input
+            document.getElementById("text").value = "";
+            // Đổi màu trở lại
+            let result = document.getElementsByClassName("colerScore");
+            for (let j = 0; j < result.length; j++) {
+                result[j].style.backgroundColor = "white";
+            }
+            // Sau khi dược thêm vào danh sách thì gọi lại hàm
             renderComment();
-
         }
-        // Hiển thị nội dung
 
+        // Hiển thị nội dung
         function renderComment() {
             let result = "";
-            let arrLocalStorage = localStorage.setItem("result",JSON.stringify(result));
+            let comments = JSON.parse(localStorage.getItem("comments")) || [];
             for (let z = 0; z < comments.length; z++) {
-
                 result += `<ul>
                             <li>${comments[z].score}</li>
                             <p>${comments[z].content}</p>
-                            <i class="fa-solid fa-pen-to-square" ></i>
-                            <i class="fa-solid fa-xmark" onclick = "deleteItem(${z})"></i>
+                            <i class="fa-solid fa-pen-to-square" onclick="editItem(${comments[z].id})"></i>
+                            <i class="fa-solid fa-xmark" onclick="deleteItem(${comments[z].id})"></i>
                            </ul>`
             }
-            
             document.getElementsByClassName("render")[0].innerHTML = result;
         }
+        renderComment();
         // Hàm xoá nội dung
-        function deleteItem(z) {  
-            comments.splice(z,1);
-            renderComment();
+        function deleteItem(commentId) {
+            // Tìm phần tử có id nằm ở vị trí thứ bao nhiêu trong mảng
+            for (let b = 0; b < comments.length; b++) {
+                if (comments[b].id == commentId) {
+                    comments.splice(b, 1);
+                    // khi xoá xong lưu lại trên local
+                    localStorage.setItem("comments", JSON.stringify(comments));
+                    renderComment();
+                    return;
+                }
+            }
+        }
+        let commentId = "";
+        // Hàm edit
+        function editItem(paramsId) {
+            for (let i = 0; i < comments.length; i++) {
+                if (comments[i].id == paramsId) {
+                    commentId = paramsId;
+                    // Score1 được gán lại bằng chính điểm ở vị trí thứ i
+                    score1 = comments[i].score;
+                    document.getElementById("text").value = comments[i].content;
+                    document.getElementById("btn_update").style.display = "inline-block";
+                    // let info = {
+                    //     content: text,
+                    //     score: score1,
+                    //     id: Math.floor(Math.random() * 478927)
+                    // }
+                }
+            }
+            // Gán màu bằng màu của score
+            let result = document.getElementsByClassName("colerScore");
+            for (let j = 0; j < result.length; j++) {
+                if (score1 == j) {
+                    result[j].style.backgroundColor = "pink";
+                } else {
+                    result[j].style.backgroundColor = "white";
+                }
+            }
         }
 
+        function update() {
+            for (let i = 0; i < comments.length; i++) {
+                if (comments[i].id == commentId) {
+                    comments[i].score = score1;
+                    console.log(score1);
+                    comments[i].content = document.getElementById("text").value;
+                    document.getElementById("text").value = "";
+                    document.getElementById("btn_update").style.display = "none";
+                    localStorage.setItem("comments", JSON.stringify(comments));
+                    // Đổi màu trở lại
+                    let result = document.getElementsByClassName("colerScore");
+                    for (let j = 0; j < result.length; j++) {
+                        result[j].style.backgroundColor = "white";
 
+                    }
+                    renderComment();
+                }
+            }
+        }
 
-        
     </script>
 </body>
 
